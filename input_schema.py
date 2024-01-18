@@ -8,8 +8,7 @@ INPUT_SCHEMA = {
     'negative_prompt': {
         'datatype': 'STRING',
         'required': False,
-        'example': ["test"],
-        'shape': [1]
+        'shape': [-1]
     },
     'width': {
         'datatype': 'INT8',
