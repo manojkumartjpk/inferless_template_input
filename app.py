@@ -12,10 +12,13 @@ class InferlessPythonModel:
     # replace ##task_type## and ##huggingface_name## with appropriate values
     def initialize(self):
         self.generator = pipeline("text-generation", model="EleutherAI/gpt-neo-125M",device=0)
-        file_path = os.getenv("FILE_PATH")
+        folder_path = os.getenv("NFS_PATH")
+        file_path = folder_path + "/test.txt"
         if os.path.exists(file_path):
             print("File exists.", flush=True)
         else:
+            with open(file_path, 'w') as file:
+                pass  # This will create an empty file
             print("File does not exist.", flush=True)
 
     # inputs is a dictonary where the keys are input names and values are actual input data
