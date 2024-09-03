@@ -13,13 +13,9 @@ class InferlessPythonModel:
     def initialize(self):
         self.generator = pipeline("text-generation", model="EleutherAI/gpt-neo-125M",device=0)
         folder_path = os.getenv("NFS_PATH")
-        file_path = folder_path + "/test.txt"
-        if os.path.exists(file_path):
-            print("File exists.", flush=True)
-        else:
-            with open(file_path, 'w') as file:
-                pass  # This will create an empty file
-            print("File does not exist.", flush=True)
+        file_path = folder_path + "/test1.txt"
+        with open(file_path, 'a') as file:
+            file.write("hello world\n")  # Write "hello world" to the end of the file
 
     # inputs is a dictonary where the keys are input names and values are actual input data
     # e.g. in the below code the input name is prompt 
