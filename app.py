@@ -1,11 +1,30 @@
 import json
 import os
-
 import numpy as np
 import torch
 from transformers import pipeline
 from datetime import datetime
 
+import inferless
+from pydantic import BaseModel, Field
+from typing import List, Optional, Dict
+
+@inferless.request
+class RequestObjects(BaseModel):
+    input_image_url: str = Field(default='https://hello.world')
+    count_iterations: int = Field(default=4)
+    prompt: str = Field(default="a horse near a beach")
+    mask_arr: List[int] = Field(default=[1, 5])
+    is_aws: Optional[bool] = None
+
+
+@inferless.response
+class ResponseObjects(BaseModel):
+    output_image_url: str
+    count_iterations: int
+    quality: float
+    positions: List[int] = Field(default=[1, 5])
+    is_aws: Optional[float] = None
 
 class InferlessPythonModel:
 
