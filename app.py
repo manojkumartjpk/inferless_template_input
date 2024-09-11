@@ -9,7 +9,7 @@ import inferless
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict
 
-@inferless.request
+
 class RequestObjects(BaseModel):
     input_image_url: str = Field(default='https://hello.world')
     count_iterations: int = Field(default=4)
