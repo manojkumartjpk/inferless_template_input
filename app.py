@@ -23,7 +23,7 @@ class InferlessPythonModel:
     def infer(self, inputs):
         print("we came inside infer ")
         prompt = inputs["prompt"]
-        print("type--->", type(prompt)
+        print("type--->", type(prompt))
         print("len--->", len(prompt))
         pipeline_output = self.generator(prompt, do_sample=True, min_length=50)
         generated_txt = pipeline_output[0]["generated_text"]
