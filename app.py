@@ -25,7 +25,7 @@ class InferlessPythonModel:
         prompt = inputs["prompt"]
         pipeline_output = self.generator(prompt, do_sample=True, min_length=50)
         generated_txt = pipeline_output[0]["generated_text"]
-        #print("generated_text-->", generated_txt, flush=True)
+        #print("generated_text--->", generated_txt, flush=True)
         return {"generated_text": generated_txt }
 
     # perform any cleanup activity here
