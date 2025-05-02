@@ -17,7 +17,7 @@ class InferlessPythonModel:
     # e.g. in the below code the output name is generated_txt
     def infer(self, inputs):
         prompt = inputs["prompt"]
-        time.sleep(25)
+        time.sleep(500)
         pipeline_output = self.generator(prompt, do_sample=True, min_length=20)
         generated_txt = pipeline_output[0]["generated_text"]
         return {"generated_text": generated_txt }
