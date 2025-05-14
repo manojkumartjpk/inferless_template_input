@@ -18,14 +18,6 @@ class RequestObjects(BaseModel):
     is_aws: Optional[bool] = None
 
 
-@inferless.response
-class ResponseObjects(BaseModel):
-    output_image_url: str
-    count_iterations: int
-    quality: float
-    positions: List[int] = Field(default=[1, 5])
-    is_aws: Optional[float] = None
-
 class InferlessPythonModel:
 
     # replace ##task_type## and ##huggingface_name## with appropriate values
