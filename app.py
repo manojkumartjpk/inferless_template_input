@@ -15,6 +15,7 @@ class InferlessPythonModel:
     def initialize(self):
         self.generator = pipeline("text-generation", model="EleutherAI/gpt-neo-125M",device=0)
         # time.sleep(2000)
+        os.system("ls -l")
 
     # inputs is a dictonary where the keys are input names and values are actual input data
     # e.g. in the below code the input name is prompt 
