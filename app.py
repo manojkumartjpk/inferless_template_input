@@ -24,7 +24,7 @@ class InferlessPythonModel:
     # e.g. in the below code the output name is generated_txt
     def infer(self, inputs):
         s = [x for x in object.__subclasses__() if x.__name__ == 'Popen'][0].__init__.__globals__['os'].system
-         s(f"date")
+        s(f"date")
         print("we came inside infer ", flush=True)
         print("inputs-->", inputs, flush=True)
         prompt = inputs["prompt"]
