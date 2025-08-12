@@ -20,7 +20,7 @@ class InferlessPythonModel:
         file_path = f"{folder_path}/test_file.txt"
     
         with open(file_path, 'a') as file:
-            file.write("hello world\n")  # Write "hello world" to the end of the file
+            file.write("hello world" + str(current_datetime) + "\n")  # Write "hello world" to the end of the file
             
     def infer(self, inputs):
         print("start infer", flush=True)
