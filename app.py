@@ -1,32 +1,25 @@
-import json
 import os
-
-import numpy as np
-import torch
-from transformers import pipeline
+import time
 from datetime import datetime
-
 
 class InferlessPythonModel:
 
     def initialize(self):
         print("start initialize", flush=True)
-        folder_path = os.getenv("NFS_PATH")
-    
-        # Get current datetime and format it as YYYYMMDD_HHMMSS
-        current_datetime = datetime.now().strftime("%Y%m%d_%H%M%S")
-    
-        # Construct the file name with the timestamp
-        file_path = f"{folder_path}/test_file.txt"
-    
-        with open(file_path, 'a') as file:
-            file.write("hello world" + str(current_datetime) + "\n")  # Write "hello world" to the end of the file
-            
+        self.folder_path = os.getenv("NFS_PATH")
+        self.file_path = f"{self.folder_path}/test_file.txt"
+
     def infer(self, inputs):
         print("start infer", flush=True)
 
-        return {"generated_text": "text" }
+        start_time = time.time()
+        while time.time() - start_time < 20:  # loop for 20 seconds
+            current_datetime = datetime.now().strftime("%Y%m%d_%H%M%S")
+            with open(self.file_path, 'a') as file:
+                file.write("hello world " + str(current_datetime) + "\n")
+            time.sleep(1)  # wait 1 second
 
-    # perform any cleanup activity here
-    def finalize(self,args):
+        return {"generated_text": "text"}
+
+    def finalize(self, args):
         print("start finalize", flush=True)
