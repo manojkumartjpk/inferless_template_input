@@ -17,7 +17,7 @@ class InferlessPythonModel:
         current_datetime = datetime.now().strftime("%Y%m%d_%H%M%S")
     
         # Construct the file name with the timestamp
-        file_path = f"{folder_path}/test_{current_datetime}.txt"
+        file_path = f"{folder_path}/test_file.txt"
     
         with open(file_path, 'a') as file:
             file.write("hello world\n")  # Write "hello world" to the end of the file
