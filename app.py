@@ -17,11 +17,11 @@ class InferlessPythonModel:
     def infer(self, inputs):
         print("start infer", flush=True)
 
-        for _ in range(50):  # loop exactly 50 times
+        for _ in range(20):  # loop exactly 20 times
             current_datetime = datetime.now().strftime("%Y%m%d_%H%M%S")
             with open(self.file_path, 'a') as file:
                 file.write(f"[{self.pod_id}] hello world {current_datetime}\n")
-            time.sleep(0.1)
+            time.sleep(1)
 
         return {"generated_text": "text"}
 
