@@ -1,5 +1,6 @@
 import os
 import time
+import uuid
 from datetime import datetime
 
 class InferlessPythonModel:
@@ -9,14 +10,17 @@ class InferlessPythonModel:
         self.folder_path = os.getenv("NFS_PATH")
         self.file_path = f"{self.folder_path}/test_file.txt"
 
+        # Generate a unique identifier for this pod instance
+        self.pod_id = str(uuid.uuid4())[:8]  # short 8-char ID
+        print("id-->" + str(self.pod_id), flush=True)
+
     def infer(self, inputs):
         print("start infer", flush=True)
 
-        start_time = time.time()
-        while time.time() - start_time < 20:  # loop for 20 seconds
+        for _ in range(50):  # loop exactly 50 times
             current_datetime = datetime.now().strftime("%Y%m%d_%H%M%S")
             with open(self.file_path, 'a') as file:
-                file.write("hello world " + str(current_datetime) + "\n")
+                file.write(f"[{self.pod_id}] hello world {current_datetime}\n")
             time.sleep(1)  # wait 1 second
 
         return {"generated_text": "text"}
