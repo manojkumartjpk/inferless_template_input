@@ -21,7 +21,7 @@ class InferlessPythonModel:
             current_datetime = datetime.now().strftime("%Y%m%d_%H%M%S")
             with open(self.file_path, 'a') as file:
                 file.write(f"[{self.pod_id}] hello world {current_datetime}\n")
-            time.sleep(1)  # wait 1 second
+            time.sleep(0.1)
 
         return {"generated_text": "text"}
 
