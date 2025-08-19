@@ -7,9 +7,7 @@ class InferlessPythonModel:
 
     def initialize(self):
         print("start initialize", flush=True)
-        self.folder_path = os.getenv("NFS_PATH")
-        self.file_path = f"{self.folder_path}/test_file.txt"
-    
+        self.folder_path = os.getenv("NFS_PATH")    
         # Create the folder if it does not exist
         if self.folder_path:
             os.makedirs(self.folder_path, exist_ok=True)
@@ -17,6 +15,7 @@ class InferlessPythonModel:
         # Generate a unique identifier for this pod instance
         self.pod_id = str(uuid.uuid4())[:8]  # short 8-char ID
         print("id-->" + str(self.pod_id), flush=True)
+        self.file_path = f"{self.folder_path}/test_file_{self.pod_id}.txt"
 
     def infer(self, inputs):
         print("start infer", flush=True)
