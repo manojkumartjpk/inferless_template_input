@@ -15,7 +15,7 @@ class InferlessPythonModel:
         # Generate a unique identifier for this pod instance
         self.pod_id = str(uuid.uuid4())[:8]  # short 8-char ID
         print("id-->" + str(self.pod_id), flush=True)
-        self.file_path = f"{self.folder_path}/test_file_{self.pod_id}.txt"
+        self.file_path = f"{self.folder_path}/test_file.txt"
 
     def infer(self, inputs):
         print("start infer", flush=True)
