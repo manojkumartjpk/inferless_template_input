@@ -16,10 +16,7 @@ class InferlessPythonModel:
         self.pod_id = str(uuid.uuid4())[:8]
         print(f"pod_id -> {self.pod_id}", flush=True)
 
-    def infer(self, inputs):
-        print("start infer", flush=True)
-
-        file_size_mb = int(inputs.get("file_size_MB", 50))  # allow override from inputs
+        file_size_mb = int(inputs.get("file_size_MB", 500))  # allow override from inputs
         data = os.urandom(1024 * 1024)  # 1MB random chunk
 
         # --- WRITE TEST ---
@@ -51,7 +48,11 @@ class InferlessPythonModel:
         }
 
         print(result, flush=True)
-        return result
+
+    def infer(self, inputs):
+        print("start infer", flush=True)
+
+        return {"generated_text": "test"}
 
     def finalize(self, args):
         print("start finalize", flush=True)
