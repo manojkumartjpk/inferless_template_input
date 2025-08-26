@@ -9,6 +9,9 @@ class InferlessPythonModel:
         self.folder_path = os.getenv("NFS_PATH", "/tmp")  # fallback to /tmp if not set
         self.file_path = os.path.join(self.folder_path, "speed_test_file.bin")
 
+        # Ensure the directory exists
+        os.makedirs(self.folder_path, exist_ok=True)
+
         # Unique pod identifier
         self.pod_id = str(uuid.uuid4())[:8]
         print(f"pod_id -> {self.pod_id}", flush=True)
@@ -16,7 +19,7 @@ class InferlessPythonModel:
     def infer(self, inputs):
         print("start infer", flush=True)
 
-        file_size_mb = 50  # test file size in MB
+        file_size_mb = int(inputs.get("file_size_MB", 50))  # allow override from inputs
         data = os.urandom(1024 * 1024)  # 1MB random chunk
 
         # --- WRITE TEST ---
