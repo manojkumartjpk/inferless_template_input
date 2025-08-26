@@ -50,7 +50,7 @@ class InferlessPythonModel:
         }
 
         print(result, flush=True)
-        return {"generated_text": "test"}
+        return result
 
     def finalize(self, args):
         print("start finalize", flush=True)
