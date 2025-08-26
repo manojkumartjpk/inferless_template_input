@@ -21,6 +21,13 @@ class InferlessPythonModel:
         file_size_mb = int(inputs.get("file_size_MB", 1024))  # allow override from inputs
         data = os.urandom(1024 * 1024)  # 1MB random chunk
 
+        # --- CLEAN UP before starting ---
+        if os.path.exists(self.file_path):
+            try:
+                os.remove(self.file_path)
+            except Exception as e:
+                print(f"warning: could not remove old test file: {e}", flush=True)
+
         # --- WRITE TEST ---
         start_time = time.time()
         with open(self.file_path, "wb") as f:
@@ -39,8 +46,9 @@ class InferlessPythonModel:
         read_time = time.time() - start_time
         read_speed = file_size_mb / read_time
 
-        # Clean up
-        os.remove(self.file_path)
+        # --- CLEAN UP after finishing ---
+        if os.path.exists(self.file_path):
+            os.remove(self.file_path)
 
         result = {
             "pod_id": self.pod_id,
