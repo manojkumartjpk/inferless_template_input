@@ -18,7 +18,7 @@ class InferlessPythonModel:
 
     def infer(self, inputs):
         print("start infer", flush=True)
-        file_size_mb = int(inputs.get("file_size_MB", 500))  # allow override from inputs
+        file_size_mb = int(inputs.get("file_size_MB", 1024))  # allow override from inputs
         data = os.urandom(1024 * 1024)  # 1MB random chunk
 
         # --- WRITE TEST ---
