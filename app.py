@@ -24,8 +24,8 @@ class InferlessPythonModel:
         with open(self.file_path, "wb") as f:
             for _ in range(file_size_mb):
                 f.write(data)
-        f.flush()
-        os.fsync(f.fileno())
+            f.flush()
+            os.fsync(f.fileno())
         write_time = time.time() - start_time
         write_speed = file_size_mb / write_time
 
@@ -47,10 +47,8 @@ class InferlessPythonModel:
             "read_speed_MBps": round(read_speed, 2),
         }
 
-
         print(result, flush=True)
-        return {"generated_text": "text"}
-
+        return result
 
     def finalize(self, args):
         print("start finalize", flush=True)
